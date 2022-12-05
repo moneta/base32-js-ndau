@@ -8,6 +8,11 @@ One of the primary purposes is to have aesthetically pleasing SHA1 hashes. Compa
  - B64: `xE_ptB5SeclHm8JEsD0-ST1mTBM`
  - B32: `2w2qd15ym7wk650rprtuh4vk26eqcqym`
 
+Ndau alphabet is the encoding alphabet we use for byte32 encoding. It consists of the lowercase alphabet and digits, without l, 1, 0, and o. When decoding, we will accept either upper or lower case.
+```javascipt
+const alphabet = "abcdefghijkmnpqrstuvwxyz23456789"
+```
+
 Try giving out the Base 64 hash over the phone! "lowercase 'x', capital 'E', underscore, lowercase 'p', ..." Base 32 will work the same with upper- or lowercase, you can mistake a number for a similar-looking letter, and it will *still* decode to the same data.
 
 ## Getting started
@@ -63,12 +68,7 @@ This is just one that should be simple, less error-prone, and streamable (for [N
 
 ## Minispec
 
-- The *encoding* alphabet consists of the numerals 0-9 and the letters a-z, excluding a few letters that might look like numbers, which we simply interpret as follows:
-
-  - I -> 1
-  - L -> 1
-  - O -> 0
-  - S -> 5
+- The *encoding* alphabet consists of the numerals 0-9 and the letters a-z, excluding a few letters that might look like numbers: l, 1, o, 0.
 
 - When *decoding*, capital letters are converted to lowercase and the "ambiguous" letters mentioned above converted to their numeric counterparts.
 - Each character corresponds to 5 bits of input.
